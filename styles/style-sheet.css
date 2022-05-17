@@ -78,7 +78,18 @@ body {
     color: white;
     font-size: 30px;
     cursor: pointer;
-    width: 100px;
+    width: 120px;
+    height: 50px;
+    background-color: rgb(0, 52, 70);
+    margin-top: 40px;
+}
+
+.restart-btn {
+    display: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    width: 120px;
     height: 50px;
     background-color: rgb(0, 52, 70);
     margin-top: 40px;
