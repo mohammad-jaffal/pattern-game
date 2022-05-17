@@ -8,55 +8,46 @@ const startButton = document.getElementById('start')
 
 var pattern = [];
 var level = 1;
-var count = 10;
+var count = 1;
 
 for (var i = 0; i < 10; i++) {
     pattern.push(Math.floor(Math.random() * 4) + 1);
 
 }
 
+
+
+
 firstBox.addEventListener('click', function onClick() {
     console.log('first clicked');
-    firstBox.style.backgroundColor = 'white';
-    setTimeout(() => firstBox.style.backgroundColor = 'yellow', 1);
-
-    if (pattern[level] == 1)
-        addLevel();
-    else
-        console.log('game over');
+    // firstBox.style.backgroundColor = 'white';
+    // setTimeout(() => firstBox.style.backgroundColor = 'yellow', 1);
+    console.log(`count is ${count}`);
+    checkPattern(1);
 });
 
 secondBox.addEventListener('click', function onClick() {
     console.log('second clicked');
-    secondBox.style.backgroundColor = 'white';
-    setTimeout(() => secondBox.style.backgroundColor = 'green', 1);
-
-    if (pattern[level] == 2)
-        addLevel();
-    else
-        console.log('game over');
+    // secondBox.style.backgroundColor = 'white';
+    // setTimeout(() => secondBox.style.backgroundColor = 'green', 1);
+    console.log(`count is ${count}`);
+    checkPattern(2);
 });
 
 thirdBox.addEventListener('click', function onClick() {
     console.log('third clicked');
-    thirdBox.style.backgroundColor = 'white';
-    setTimeout(() => thirdBox.style.backgroundColor = 'blue', 1);
-
-    if (pattern[level] == 3)
-        addLevel();
-    else
-        console.log('game over');
+    // thirdBox.style.backgroundColor = 'white';
+    // setTimeout(() => thirdBox.style.backgroundColor = 'blue', 1);
+    console.log(`count is ${count}`);
+    checkPattern(3);
 });
 
 fourthBox.addEventListener('click', function onClick() {
     console.log('fourth clicked');
-    fourthBox.style.backgroundColor = 'white';
-    setTimeout(() => fourthBox.style.backgroundColor = 'red', 1);
-
-    if (pattern[level] == 4)
-        addLevel();
-    else
-        console.log('game over');
+    // fourthBox.style.backgroundColor = 'white';
+    // setTimeout(() => fourthBox.style.backgroundColor = 'red', 1);
+    console.log(`count is ${count}`);
+    checkPattern(4);
 });
 
 
@@ -83,13 +74,34 @@ startButton.addEventListener('click', function onClick() {
     fourthBox.style.cursor = 'pointer';
     // pointer-events: none;
 
-    console.log(pattern[level]);
+    console.log(`level is ${level}`);
+    console.log(`box is ${pattern[level]}`);
 
 });
 
 
 function addLevel() {
+    count = 1;
     level++;
-    console.log(pattern[level]);
-    
+    console.log(`level is ${level}`);
+    console.log(`box is ${pattern[level]}`);
+
+
+}
+
+function checkPattern(x) {
+    // var count = 1;
+    if (x == pattern[count]) {
+        console.log("correct click");
+        if (count == level) {
+            console.log("correct pattern");
+            addLevel();
+        }
+        else
+            count++;
+    }
+    else
+    console.log('game over');
+
+
 }
