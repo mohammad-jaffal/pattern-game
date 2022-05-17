@@ -7,7 +7,6 @@ body {
     box-sizing: border-box;
 }
 
-
 .global-container {
     height: 100%;
     width: 100%;
@@ -23,7 +22,6 @@ body {
     vertical-align: middle;
     text-align: center;
     padding: 50px;
-
 }
 
 .top-container {
@@ -42,6 +40,7 @@ body {
     display: inline-block;
     background-color: yellow;
     margin: 15px;
+    cursor: default;
     pointer-events: none;
 }
 
@@ -51,6 +50,7 @@ body {
     display: inline-block;
     background-color: green;
     margin: 15px;
+    cursor: default;
     pointer-events: none;
 }
 
@@ -60,6 +60,7 @@ body {
     display: inline-block;
     background-color: blue;
     margin: 15px;
+    cursor: default;
     pointer-events: none;
 }
 
@@ -69,6 +70,7 @@ body {
     display: inline-block;
     background-color: red;
     margin: 15px;
+    cursor: default;
     pointer-events: none;
 }
 
