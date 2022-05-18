@@ -98,7 +98,7 @@ function unlockGame() {
     // enable boxes
     enableUI();
 
-    mainText.innerHTML = `level is ${level + 1}`;
+    mainText.innerHTML = `level ${level + 1}`;
 
     setTimeout(() => {
         flickBoxes[pattern[level]]();
