@@ -13,8 +13,8 @@ var wrongAudio = new Audio('./assets/sound-files/wrong.mp3');
 
 
 
-
-
+var audioSounds = [wrongAudio, greenAudio, redAudio, yellowAudio, blueAudio]
+var flickBoxes = [flickStart, flickGreen, flickRed, flickYellow, flickBlue]
 
 
 // audio.play();
@@ -31,14 +31,36 @@ for (var i = 0; i < maxLevel; i++) {
 }
 
 
+function flickGreen() {
+    greenBox.style.backgroundColor = 'white';
+    setTimeout(() => greenBox.style.backgroundColor = 'green', 100);
+}
+function flickRed() {
+    redBox.style.backgroundColor = 'white';
+    setTimeout(() => redBox.style.backgroundColor = 'red', 100);
+}
+function flickYellow() {
+    yellowBox.style.backgroundColor = 'white';
+    setTimeout(() => yellowBox.style.backgroundColor = 'yellow', 100);
+}
+function flickBlue() {
+    blueBox.style.backgroundColor = 'white';
+    setTimeout(() => blueBox.style.backgroundColor = 'blue', 100);
+}
+
+function flickStart() {
+    startButton.style.backgroundColor = 'white';
+    setTimeout(() => startButton.style.backgroundColor = 'rgb(0, 52, 70)', 100);
+}
+
+    
 
 
 
 // onclick event for green
 greenBox.addEventListener('click', function onClick() {
-    console.log('second clicked');
-    greenBox.style.backgroundColor = 'white';
-    setTimeout(() => greenBox.style.backgroundColor = 'green', 1);
+    console.log('green clicked');
+    flickGreen();
     console.log(`count is ${count}`);
     checkPattern(1);
 });
@@ -46,27 +68,24 @@ greenBox.addEventListener('click', function onClick() {
 
 // onclick event for red
 redBox.addEventListener('click', function onClick() {
-    console.log('fourth clicked');
-    redBox.style.backgroundColor = 'white';
-    setTimeout(() => redBox.style.backgroundColor = 'red', 1);
+    console.log('red clicked');
+    flickRed();
     console.log(`count is ${count}`);
     checkPattern(2);
 });
 
 // onclick event for yellow
 yellowBox.addEventListener('click', function onClick() {
-    console.log('first clicked');
-    yellowBox.style.backgroundColor = 'white';
-    setTimeout(() => yellowBox.style.backgroundColor = 'yellow', 1);
+    console.log('yellow clicked');
+    flickYellow();
     console.log(`count is ${count}`);
     checkPattern(3);
 });
 
 // onclick event for blue
 blueBox.addEventListener('click', function onClick() {
-    console.log('third clicked');
-    blueBox.style.backgroundColor = 'white';
-    setTimeout(() => blueBox.style.backgroundColor = 'blue', 1);
+    console.log('blue clicked');
+    flickBlue();
     console.log(`count is ${count}`);
     checkPattern(4);
 });
@@ -76,14 +95,10 @@ blueBox.addEventListener('click', function onClick() {
 
 
 
-
-
-
 // onclick event for the start button
 startButton.addEventListener('click', function onClick() {
     console.log('started');
-    startButton.style.backgroundColor = 'white';
-    setTimeout(() => startButton.style.backgroundColor = 'rgb(0, 52, 70)', 1);
+    flickBoxes[0]();
 
     // disable button
     startButton.style.pointerEvents = 'none';
@@ -105,6 +120,17 @@ startButton.addEventListener('click', function onClick() {
 
     console.log(`level is ${level}`);
     console.log(`THE BOX NOW IS ${pattern[level]}`);
+    setTimeout(() => {
+        flickBoxes[pattern[level]]();
+        audioSounds[pattern[level]].play();
+    }, 1000);
+    
+    
+    
+
+    
+
+
 
 });
 
@@ -114,6 +140,11 @@ function addLevel() {
     level++;
     console.log(`level is ${level}`);
     console.log(`THE BOX NOW IS ${pattern[level]}`);
+    setTimeout(() => {
+        flickBoxes[pattern[level]]();
+        audioSounds[pattern[level]].play();
+    }, 1000);
+    
 
 
 }
@@ -134,6 +165,8 @@ function checkPattern(x) {
             count++;
     }
     else {
+        
+        setTimeout(() => audioSounds[0].play(), 100);
         console.log('game over');
         startButton.style.display = 'none';
         restartButton.style.display = 'inline-block';
