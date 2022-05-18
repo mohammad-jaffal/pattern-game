@@ -61,6 +61,7 @@ function flickStart() {
 greenBox.addEventListener('click', function onClick() {
     console.log('green clicked');
     flickGreen();
+    greenAudio.play();
     console.log(`count is ${count}`);
     checkPattern(1);
 });
@@ -70,6 +71,7 @@ greenBox.addEventListener('click', function onClick() {
 redBox.addEventListener('click', function onClick() {
     console.log('red clicked');
     flickRed();
+    redAudio.play();
     console.log(`count is ${count}`);
     checkPattern(2);
 });
@@ -78,6 +80,7 @@ redBox.addEventListener('click', function onClick() {
 yellowBox.addEventListener('click', function onClick() {
     console.log('yellow clicked');
     flickYellow();
+    yellowAudio.play();
     console.log(`count is ${count}`);
     checkPattern(3);
 });
@@ -86,6 +89,7 @@ yellowBox.addEventListener('click', function onClick() {
 blueBox.addEventListener('click', function onClick() {
     console.log('blue clicked');
     flickBlue();
+    yellowAudio.play();
     console.log(`count is ${count}`);
     checkPattern(4);
 });
@@ -166,7 +170,7 @@ function checkPattern(x) {
     }
     else {
         
-        setTimeout(() => audioSounds[0].play(), 100);
+        setTimeout(() => audioSounds[0].play(), 500);
         console.log('game over');
         startButton.style.display = 'none';
         restartButton.style.display = 'inline-block';
