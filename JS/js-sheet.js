@@ -2,9 +2,8 @@ const greenBox = document.getElementById('greenBox');
 const redBox = document.getElementById('redBox');
 const yellowBox = document.getElementById('yellowBox');
 const blueBox = document.getElementById('blueBox');
-const startButton = document.getElementById('start');
-const restartButton = document.getElementById('restart');
 const globalContainer = document.getElementById('globalContainer');
+const mainText = document.getElementById('mainText');
 
 
 var greenAudio = new Audio('./assets/sound-files/green.mp3');
@@ -13,11 +12,12 @@ var yellowAudio = new Audio('./assets/sound-files/yellow.mp3');
 var blueAudio = new Audio('./assets/sound-files/blue.mp3');
 var wrongAudio = new Audio('./assets/sound-files/wrong.mp3');
 
-
-
 var audioSounds = [wrongAudio, greenAudio, redAudio, yellowAudio, blueAudio]
-var flickBoxes = [flickStart, flickGreen, flickRed, flickYellow, flickBlue]
+var flickBoxes = [flickGlobal, flickGreen, flickRed, flickYellow, flickBlue]
 
+
+var started = false;
+var lost = false;
 
 // audio.play();
 
@@ -50,67 +50,46 @@ function flickBlue() {
     setTimeout(() => blueBox.style.backgroundColor = 'blue', 100);
 }
 
-function flickStart() {
-    startButton.style.backgroundColor = 'white';
-    setTimeout(() => startButton.style.backgroundColor = 'rgb(0, 52, 70)', 100);
+function flickGlobal() {
+    globalContainer.style.backgroundColor = 'red';
+    setTimeout(() => globalContainer.style.backgroundColor = 'rgba(3,29,54,255)', 100);
 }
 
-    
+
 
 
 
 // onclick event for green
 greenBox.addEventListener('click', function onClick() {
-    console.log('green clicked');
     flickGreen();
     greenAudio.play();
-    console.log(`count is ${count}`);
     checkPattern(1);
 });
 
 
 // onclick event for red
 redBox.addEventListener('click', function onClick() {
-    console.log('red clicked');
     flickRed();
     redAudio.play();
-    console.log(`count is ${count}`);
     checkPattern(2);
 });
 
 // onclick event for yellow
 yellowBox.addEventListener('click', function onClick() {
-    console.log('yellow clicked');
     flickYellow();
     yellowAudio.play();
-    console.log(`count is ${count}`);
     checkPattern(3);
 });
 
 // onclick event for blue
 blueBox.addEventListener('click', function onClick() {
-    console.log('blue clicked');
     flickBlue();
-    yellowAudio.play();
-    console.log(`count is ${count}`);
+    blueAudio.play();
     checkPattern(4);
 });
 
 
-
-
-// globalContainer.addEventListener('keypress', function onClick() {
-document.addEventListener('keypress', function onClick() {
-// onclick event for the start button
-// startButton.addEventListener('click', function onClick() {
-    console.log('started');
-    flickBoxes[0]();
-
-    // disable button
-    startButton.style.pointerEvents = 'none';
-    startButton.style.cursor = 'default';
-
-    // enable boxes
+function enableUI() {
     greenBox.style.pointerEvents = 'all';
     greenBox.style.cursor = 'pointer';
 
@@ -122,35 +101,61 @@ document.addEventListener('keypress', function onClick() {
 
     blueBox.style.pointerEvents = 'all';
     blueBox.style.cursor = 'pointer';
-    // pointer-events: none;
+}
 
-    console.log(`level is ${level}`);
-    console.log(`THE BOX NOW IS ${pattern[level]}`);
+function disableUI() {
+    greenBox.style.pointerEvents = 'none';
+    greenBox.style.cursor = 'default';
+
+    redBox.style.pointerEvents = 'none';
+    redBox.style.cursor = 'default';
+
+    yellowBox.style.pointerEvents = 'none';
+    yellowBox.style.cursor = 'default';
+
+    blueBox.style.pointerEvents = 'none';
+    blueBox.style.cursor = 'default';
+}
+
+
+function resetGame() {
+
+    console.log('started');
+    started = true;
+
+    // enable boxes
+    enableUI();
+
+    mainText.innerHTML = `level is ${level + 1}`;
+
     setTimeout(() => {
         flickBoxes[pattern[level]]();
         audioSounds[pattern[level]].play();
     }, 1000);
-    
-    
-    
-
-    
+}
 
 
+document.addEventListener('keypress', function onClick() {
 
+    if (!started) {
+        if (lost) {
+            this.location.reload();
+        }
+        resetGame();
+    }
 });
 
 // add a new level when the pattern is correct
 function addLevel() {
     count = 0;
     level++;
-    console.log(`level is ${level}`);
-    console.log(`THE BOX NOW IS ${pattern[level]}`);
+    setTimeout(() => mainText.innerHTML = `level is ${level + 1}`, 200);
     setTimeout(() => {
+        mainText.innerHTML = `level is ${level + 1}`;
         flickBoxes[pattern[level]]();
         audioSounds[pattern[level]].play();
     }, 1000);
-    
+
 
 
 }
@@ -158,24 +163,28 @@ function addLevel() {
 // check if the button clicked is in the right sequence
 function checkPattern(x) {
     if (x == pattern[count]) {
-        console.log("correct click");
         if (count == level) {
+            // the player won
             if (count == maxLevel - 1) {
                 console.log("CONGRATULATIONS !!!!!!!");
                 return;
             }
-            console.log("correct pattern");
             addLevel();
         }
         else
             count++;
     }
     else {
-        
-        setTimeout(() => audioSounds[0].play(), 500);
+        // the player lost
+        disableUI();
+        setTimeout(() => {
+            audioSounds[0].play();
+            flickBoxes[0]();
+        }, 100);
         console.log('game over');
-        startButton.style.display = 'none';
-        restartButton.style.display = 'inline-block';
+        mainText.innerHTML = "Game Over, Press Any Key to Restart";
+        started = false;
+        lost = true;
     }
 }
 

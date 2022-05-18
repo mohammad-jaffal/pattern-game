@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 html,
 body {
     width: 100%;
@@ -10,15 +14,26 @@ body {
 .global-container {
     height: 100%;
     width: 100%;
-    background-color: rgb(58, 58, 58);
+    background-color: rgba(3,29,54,255);
     display: flex;
     /* text-align: center; */
     justify-content: center;
     align-items: center;
 }
 
+
+.text-container {
+    margin-bottom: 10%;
+}
+.text-container > h1 {
+    color: khaki;
+    font-family: 'Press Start 2P', cursive;
+}
+
+
+
 .main-container {
-    background-color: aqua;
+    /* background-color: aqua; */
     vertical-align: middle;
     text-align: center;
     padding: 50px;
@@ -42,6 +57,8 @@ body {
     margin: 15px;
     cursor: default;
     pointer-events: none;
+    border-radius: 30px;
+    border: solid black 10px;
 }
 
 .red-box {
@@ -52,6 +69,8 @@ body {
     margin: 15px;
     cursor: default;
     pointer-events: none;
+    border-radius: 30px;
+    border: solid black 10px;
 }
 
 .yellow-box {
@@ -62,6 +81,8 @@ body {
     margin: 15px;
     cursor: default;
     pointer-events: none;
+    border-radius: 30px;
+    border: solid black 10px;
 }
 
 .blue-box {
@@ -72,25 +93,8 @@ body {
     margin: 15px;
     cursor: default;
     pointer-events: none;
+    border-radius: 30px;
+    border: solid black 10px;
 }
 
-.start-btn {
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    width: 120px;
-    height: 50px;
-    background-color: rgb(0, 52, 70);
-    margin-top: 40px;
-}
 
-.restart-btn {
-    display: none;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    width: 120px;
-    height: 50px;
-    background-color: rgb(0, 52, 70);
-    margin-top: 40px;
-}
