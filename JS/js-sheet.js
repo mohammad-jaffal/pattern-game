@@ -4,6 +4,8 @@ const yellowBox = document.getElementById('yellowBox');
 const blueBox = document.getElementById('blueBox');
 const startButton = document.getElementById('start');
 const restartButton = document.getElementById('restart');
+const globalContainer = document.getElementById('globalContainer');
+
 
 var greenAudio = new Audio('./assets/sound-files/green.mp3');
 var redAudio = new Audio('./assets/sound-files/red.mp3');
@@ -97,10 +99,10 @@ blueBox.addEventListener('click', function onClick() {
 
 
 
-
-
+// globalContainer.addEventListener('keypress', function onClick() {
+document.addEventListener('keypress', function onClick() {
 // onclick event for the start button
-startButton.addEventListener('click', function onClick() {
+// startButton.addEventListener('click', function onClick() {
     console.log('started');
     flickBoxes[0]();
 
