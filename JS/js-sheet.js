@@ -1,9 +1,10 @@
-const firstBox = document.getElementById('box-1');
-const secondBox = document.getElementById('box-2');
-const thirdBox = document.getElementById('box-3');
-const fourthBox = document.getElementById('box-4');
+const greenBox = document.getElementById('greenBox');
+const redBox = document.getElementById('redBox');
+const yellowBox = document.getElementById('yellowBox');
+const blueBox = document.getElementById('blueBox');
 const startButton = document.getElementById('start');
 const restartButton = document.getElementById('restart');
+
 var greenAudio = new Audio('./assets/sound-files/green.mp3');
 var redAudio = new Audio('./assets/sound-files/red.mp3');
 var yellowAudio = new Audio('./assets/sound-files/yellow.mp3');
@@ -34,38 +35,38 @@ for (var i = 0; i < maxLevel; i++) {
 
 
 // onclick event for green
-secondBox.addEventListener('click', function onClick() {
+greenBox.addEventListener('click', function onClick() {
     console.log('second clicked');
-    secondBox.style.backgroundColor = 'white';
-    setTimeout(() => secondBox.style.backgroundColor = 'green', 1);
+    greenBox.style.backgroundColor = 'white';
+    setTimeout(() => greenBox.style.backgroundColor = 'green', 1);
     console.log(`count is ${count}`);
     checkPattern(1);
 });
 
 
 // onclick event for red
-fourthBox.addEventListener('click', function onClick() {
+redBox.addEventListener('click', function onClick() {
     console.log('fourth clicked');
-    fourthBox.style.backgroundColor = 'white';
-    setTimeout(() => fourthBox.style.backgroundColor = 'red', 1);
+    redBox.style.backgroundColor = 'white';
+    setTimeout(() => redBox.style.backgroundColor = 'red', 1);
     console.log(`count is ${count}`);
     checkPattern(2);
 });
 
 // onclick event for yellow
-firstBox.addEventListener('click', function onClick() {
+yellowBox.addEventListener('click', function onClick() {
     console.log('first clicked');
-    firstBox.style.backgroundColor = 'white';
-    setTimeout(() => firstBox.style.backgroundColor = 'yellow', 1);
+    yellowBox.style.backgroundColor = 'white';
+    setTimeout(() => yellowBox.style.backgroundColor = 'yellow', 1);
     console.log(`count is ${count}`);
     checkPattern(3);
 });
 
 // onclick event for blue
-thirdBox.addEventListener('click', function onClick() {
+blueBox.addEventListener('click', function onClick() {
     console.log('third clicked');
-    thirdBox.style.backgroundColor = 'white';
-    setTimeout(() => thirdBox.style.backgroundColor = 'blue', 1);
+    blueBox.style.backgroundColor = 'white';
+    setTimeout(() => blueBox.style.backgroundColor = 'blue', 1);
     console.log(`count is ${count}`);
     checkPattern(4);
 });
@@ -89,17 +90,17 @@ startButton.addEventListener('click', function onClick() {
     startButton.style.cursor = 'default';
 
     // enable boxes
-    firstBox.style.pointerEvents = 'all';
-    firstBox.style.cursor = 'pointer';
+    greenBox.style.pointerEvents = 'all';
+    greenBox.style.cursor = 'pointer';
 
-    secondBox.style.pointerEvents = 'all';
-    secondBox.style.cursor = 'pointer';
+    redBox.style.pointerEvents = 'all';
+    redBox.style.cursor = 'pointer';
 
-    thirdBox.style.pointerEvents = 'all';
-    thirdBox.style.cursor = 'pointer';
+    yellowBox.style.pointerEvents = 'all';
+    yellowBox.style.cursor = 'pointer';
 
-    fourthBox.style.pointerEvents = 'all';
-    fourthBox.style.cursor = 'pointer';
+    blueBox.style.pointerEvents = 'all';
+    blueBox.style.cursor = 'pointer';
     // pointer-events: none;
 
     console.log(`level is ${level}`);
