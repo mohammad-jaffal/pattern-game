@@ -54,40 +54,7 @@ function flickGlobal() {
     setTimeout(() => globalContainer.style.backgroundColor = 'rgba(3,29,54,255)', 100);
 }
 
-
-
-
-
-// onclick event for green
-greenBox.addEventListener('click', function onClick() {
-    flickGreen();
-    greenAudio.play();
-    checkPattern(1);
-});
-
-
-// onclick event for red
-redBox.addEventListener('click', function onClick() {
-    flickRed();
-    redAudio.play();
-    checkPattern(2);
-});
-
-// onclick event for yellow
-yellowBox.addEventListener('click', function onClick() {
-    flickYellow();
-    yellowAudio.play();
-    checkPattern(3);
-});
-
-// onclick event for blue
-blueBox.addEventListener('click', function onClick() {
-    flickBlue();
-    blueAudio.play();
-    checkPattern(4);
-});
-
-
+// allow user to click on boxes 
 function enableUI() {
     greenBox.style.pointerEvents = 'all';
     greenBox.style.cursor = 'pointer';
@@ -102,6 +69,7 @@ function enableUI() {
     blueBox.style.cursor = 'pointer';
 }
 
+// prevent user from clicking on boxes
 function disableUI() {
     greenBox.style.pointerEvents = 'none';
     greenBox.style.cursor = 'default';
@@ -116,7 +84,7 @@ function disableUI() {
     blueBox.style.cursor = 'default';
 }
 
-
+// called when the game starts
 function unlockGame() {
     console.log('playing');
     playing = true;
@@ -139,23 +107,6 @@ function unlockGame() {
 }
 
 
-
-document.addEventListener('keypress', async function onClick() {
-
-    if (lost) {
-        this.location.reload();
-            unlockGame();
-    }
-    
-
-    if (!playing) {
-        unlockGame();
-    }
-
-
-
-});
-
 // add a new level when the pattern is correct
 function addLevel() {
     count = 0;
@@ -166,10 +117,8 @@ function addLevel() {
         flickBoxes[pattern[level]]();
         audioSounds[pattern[level]].play();
     }, 1000);
-
-
-
 }
+
 
 // check if the button clicked is in the right sequence
 function checkPattern(x) {
@@ -198,7 +147,53 @@ function checkPattern(x) {
     }
 }
 
-// refreshes the page
-function refreshPage() {
-    window.location.reload();
-} 
+
+
+
+
+
+// called when user clicks to play or restart
+document.addEventListener('keypress', async function onClick() {
+
+    if (lost) {
+        this.location.reload();
+        unlockGame();
+    }
+
+    if (!playing) {
+        unlockGame();
+    }
+
+});
+
+// onclick event for green
+greenBox.addEventListener('click', function onClick() {
+    flickGreen();
+    greenAudio.play();
+    checkPattern(1);
+});
+
+// onclick event for red
+redBox.addEventListener('click', function onClick() {
+    flickRed();
+    redAudio.play();
+    checkPattern(2);
+});
+
+// onclick event for yellow
+yellowBox.addEventListener('click', function onClick() {
+    flickYellow();
+    yellowAudio.play();
+    checkPattern(3);
+});
+
+// onclick event for blue
+blueBox.addEventListener('click', function onClick() {
+    flickBlue();
+    blueAudio.play();
+    checkPattern(4);
+});
+
+
+
+
