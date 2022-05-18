@@ -16,7 +16,7 @@ var audioSounds = [wrongAudio, greenAudio, redAudio, yellowAudio, blueAudio]
 var flickBoxes = [flickGlobal, flickGreen, flickRed, flickYellow, flickBlue]
 
 
-var started = false;
+var playing = false;
 var lost = false;
 
 // audio.play();
@@ -26,30 +26,29 @@ var pattern = [];
 var level = 0;
 var count = 0;
 
-// fill the pattern array with random sequence
-for (var i = 0; i < maxLevel; i++) {
-    pattern.push(Math.floor(Math.random() * 4) + 1);
-
-}
 
 
+// flick white green box
 function flickGreen() {
     greenBox.style.backgroundColor = 'white';
     setTimeout(() => greenBox.style.backgroundColor = 'green', 100);
 }
+// flick white red box
 function flickRed() {
     redBox.style.backgroundColor = 'white';
     setTimeout(() => redBox.style.backgroundColor = 'red', 100);
 }
+// flick white yellow box
 function flickYellow() {
     yellowBox.style.backgroundColor = 'white';
     setTimeout(() => yellowBox.style.backgroundColor = 'yellow', 100);
 }
+// flick white blue box
 function flickBlue() {
     blueBox.style.backgroundColor = 'white';
     setTimeout(() => blueBox.style.backgroundColor = 'blue', 100);
 }
-
+// flick red when lost 
 function flickGlobal() {
     globalContainer.style.backgroundColor = 'red';
     setTimeout(() => globalContainer.style.backgroundColor = 'rgba(3,29,54,255)', 100);
@@ -118,10 +117,15 @@ function disableUI() {
 }
 
 
-function resetGame() {
+function unlockGame() {
+    console.log('playing');
+    playing = true;
+    lost = false;
 
-    console.log('started');
-    started = true;
+    // fill the pattern array with random sequence
+    for (var i = 0; i < maxLevel; i++) {
+        pattern.push(Math.floor(Math.random() * 4) + 1);
+    }
 
     // enable boxes
     enableUI();
@@ -135,14 +139,21 @@ function resetGame() {
 }
 
 
-document.addEventListener('keypress', function onClick() {
 
-    if (!started) {
-        if (lost) {
-            this.location.reload();
-        }
-        resetGame();
+document.addEventListener('keypress', async function onClick() {
+
+    if (lost) {
+        this.location.reload();
+            unlockGame();
     }
+    
+
+    if (!playing) {
+        unlockGame();
+    }
+
+
+
 });
 
 // add a new level when the pattern is correct
@@ -183,7 +194,6 @@ function checkPattern(x) {
         }, 100);
         console.log('game over');
         mainText.innerHTML = "Game Over, Press Any Key to Restart";
-        started = false;
         lost = true;
     }
 }
