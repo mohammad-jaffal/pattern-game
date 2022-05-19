@@ -1,3 +1,5 @@
+window.onload = function () {
+
 const greenBox = document.getElementById('greenBox');
 const redBox = document.getElementById('redBox');
 const yellowBox = document.getElementById('yellowBox');
@@ -156,8 +158,7 @@ function checkPattern(x) {
 document.addEventListener('keypress', async function onClick() {
 
     if (lost) {
-        this.location.reload();
-        unlockGame();
+        location.reload();
     }
 
     if (!playing) {
@@ -197,3 +198,4 @@ blueBox.addEventListener('click', function onClick() {
 
 
 
+}
